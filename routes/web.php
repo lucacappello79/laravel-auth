@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', [DashboardController::class, 'home'])->middleware(['auth', 'verified']);
+
 
 /*
 Route::get('/dashboard', function () {
@@ -35,7 +35,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::resource('projects', ProjectController::class)
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+
+    Route::resource('projects', ProjectController::class);
+    Route::get('/', [DashboardController::class, 'home']);
+});
+
+// a queste tolgo la parte middleware e la includo in quella sopra
+// Route::resource('projects', ProjectController::class)->middleware(['auth', 'verified']);
+// Route::get('/admin', [DashboardController::class, 'home'])->middleware(['auth', 'verified']);
 
 
 require __DIR__ . '/auth.php';
