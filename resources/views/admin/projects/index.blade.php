@@ -84,11 +84,24 @@
                 <td>{{$item->type}}</td>
                 <td>{{$item->content}}</td>
                 <td>{{$item->slug}}</td>
+
                 <td>
+                    <a href="{{route('admin.projects.show', ['project' => $item->slug])}}" class="btn btn-primary">View</a>
+                    <a href="{{route('admin.projects.edit', ['project' => $item->slug])}}" class="btn btn-warning">Edit</a>
+
+                    <form method="POST" action="{{route('admin.projects.destroy', ['project' => $item->slug])}}"  class="d-inline-block">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger" onclick="return confirm('Confermi di voler cancellare questo elemento dalla libreria? Questa azione non è reversibile')">Delete</button>
+                    </form>
+                </td>
+
+
+                {{-- <td>
                     <a href="{{route('admin.projects.show', $item->slug)}}" class="btn btn-primary btn-sm">
                         <i class="fas fa-search"></i>
                     </a>
-                </td>
+                </td> --}}
             </tr>
             @endforeach
         </tbody>

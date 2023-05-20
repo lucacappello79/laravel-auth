@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
 
-          <form class="text-white" action="{{ route('admin.project.store') }}" method="POST" class="text-dark">
+          <form class="text-white" action="{{ route('admin.projects.update', $project->slug) }}" method="POST" class="text-dark">
             @csrf
             @method('PUT')
 
