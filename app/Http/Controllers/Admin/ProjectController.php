@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -26,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return "test create";
+        return "admin.projects.create";
     }
 
     /**
@@ -37,7 +38,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validation($request);
+        $formData = $request->all();
+
+        $newProject = new Project();
+        $newProject->fill($formData);
+
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', $newProject->slug);
     }
 
     /**
@@ -59,7 +68,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -71,7 +80,13 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $this->validation($request);
+
+        $formData = $request->all();
+        $project->update($formData);
+        // in teoria il save dovrebbe essere automatico ma alcune versioni di laravel lo vogliono
+        $project->save();
+        return redirect()->route('admin.project.show', $project->id);
     }
 
     /**
@@ -82,6 +97,38 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.project.index');
+    }
+
+    private function validation($request)
+    {
+
+        $formData = $request->all();
+
+        $validator = Validator::make($formData, [
+
+            'title' => 'required|max:100|min:6',
+            'type' => 'required|max:100',
+            'slug' => 'required|max:120',
+            'content' => 'required|min:40',
+
+        ], [
+
+            'title.required' => "E' necessario inserire un titolo",
+            'title.max' => 'Il titolo non deve superare :max caratteri',
+            'title.min' => 'Il titolo deve avere un minimo di 6 caratteri',
+            'type.required' => "E' necessario inserire il linguaggio usato",
+            // 'type.max' => "La tipologia non deve superare 100 caratteri",
+            'type.max' => "La tipologia non deve superare :max caratteri",
+            'slug.required' => "Slug richiesto",
+            'slug.max' => "Lo slug non deve superare :max caratteri",
+            'content.required' => "E' richiesta una descrizione",
+            'content.max' => 'La descrizione deve avere un minimo di :min caratteri',
+
+        ])->validate();
+
+        return $validator;
     }
 }
