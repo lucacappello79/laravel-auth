@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title', 100)->unique();
+            $table->string('title', 50)->unique();
             $table->string('type', 50);
-            $table->text('content', 200);
-            $table->string('slug', 100);
+            $table->text('content', 100);
+            $table->string('slug', 60);
 
             $table->timestamps();
         });

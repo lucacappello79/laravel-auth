@@ -17,12 +17,16 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+
+        $languages = ['PHP', 'JavaScript', 'Python', 'Ruby', 'Java', 'C#'];
+        $frameworks = ['Laravel', 'React', 'Angular', 'Vue.js', 'Django', 'Ruby on Rails'];
+
         for ($i = 0; $i <= 10; $i++) {
             $project = new Project();
 
-            $project->title = $faker->text(100);
-            $project->type = $faker->text(50);
-            $project->content = $faker->text(200);
+            $project->title = $faker->text(50);
+            $project->type = $faker->randomElement(array_merge($languages, $frameworks));
+            $project->content = $faker->text(100);
             $project->slug = Str::slug($project->title, '-');
 
             $project->save();
