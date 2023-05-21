@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="create-main container-fluid text-white py-4">
+<main class="create-main container-fluid py-4">
   <div class="row justify-content-center">
     <div class="col-6">
       <div class="create-card">
@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
 
-          <form class="text-white" action="{{ route('admin.projects.store') }}" method="POST" class="text-dark">
+          <form action="{{ route('admin.projects.store') }}" method="POST" class="text-dark">
             @csrf
 
             <div class="mb-3">

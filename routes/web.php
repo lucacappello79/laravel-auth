@@ -39,9 +39,16 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
     Route::get('/', [DashboardController::class, 'home']);
+    // Route::get('admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
 });
 
+// I added this route to handle the dashboard link in my navbar. I assumei could as well include the file in my admin/projects folder without needing to use the following route because at that point if would be automatically created by my RESOURSE route for projects above here.
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard');
+
 // a queste tolgo la parte middleware e la includo in quella sopra
+
 // Route::resource('projects', ProjectController::class)->middleware(['auth', 'verified']);
 // Route::get('/admin', [DashboardController::class, 'home'])->middleware(['auth', 'verified']);
 

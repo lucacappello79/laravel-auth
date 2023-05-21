@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="create-main container-fluid text-white py-4">
+<main class="create-main container-fluid text-dark py-4">
   <div class="row justify-content-center">
     <div class="col-6">
       <div class="create-card">
@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
 
-          <form class="text-white" action="{{ route('admin.projects.update', $project->slug) }}" method="POST" class="text-dark">
+          <form class="text-dark" action="{{ route('admin.projects.update', $project->slug) }}" method="POST" class="text-dark">
             @csrf
             @method('PUT')
 

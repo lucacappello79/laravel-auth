@@ -86,7 +86,7 @@ class ProjectController extends Controller
         $project->update($formData);
         // in teoria il save dovrebbe essere automatico ma alcune versioni di laravel lo vogliono
         $project->save();
-        return redirect()->route('admin.project.show', $project->slug);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**
@@ -99,7 +99,7 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        return redirect()->route('admin.project.index');
+        return redirect()->route('admin.projects.index');
     }
 
     private function validation($request)
