@@ -29,7 +29,7 @@
 @extends('layouts/admin')
 
 @section('content')
-  <h1 class="m-3">Admin Console</h1>
+  <h1 class="m-3">Admin Console33333juyjyjyj</h1>
 
   <hr>
 

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 
@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Route::get('admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
 });
 
-// I added this route to handle the dashboard link in my navbar. I assumei could as well include the file in my admin/projects folder without needing to use the following route because at that point if would be automatically created by my RESOURSE route for projects above here.
+// I added this route to handle the dashboard link in my navbar. I assume i could as well include the file in my admin/projects folder without needing to use the following route because at that point if would be automatically created by my RESOURSE route for projects above here.
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');

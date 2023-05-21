@@ -8,7 +8,12 @@
   <div class="container">
     <div class="row d-flex flex-column gap-3">
       <div class="col-md-6">
-        <a href="{{route('admin.projects.index')}}" class="btn btn-primary">Manage Projects</a>
+        <a href="{{ route('home') }}" class="btn btn-success">Home</a>
+        {{-- VERSION SENZA ROUTE DELLO STESSO BUTTON
+        <a href="{{ url('/') }}" class="btn btn-success">Home</a> --}}
+      </div>
+      <div class="col-md-6">
+        <a href="{{route('admin.projects.index')}}" class="btn btn-primary">See all Projects</a>
       </div>
       <div class="col-md-6">
         <a href="{{route('admin.projects.create')}}" class="btn btn-warning">Create Project</a>

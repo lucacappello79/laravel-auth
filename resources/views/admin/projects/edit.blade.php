@@ -65,9 +65,15 @@
             
             </div>
 
-            <div class="d-grid">
+            {{-- <div class="d-grid">
               <button class="btn btn-primary mt-3" type="submit">Edit</button>
+            </div> --}}
+
+            <div class="d-flex justify-content-between align-items-center" style="gap: 1rem; max-width: 300px; margin: auto;">
+              <button class="btn btn-primary" type="submit">Edit Project</button>
+              <button class="btn btn-success" onclick="location.href='{{ route('admin.projects.index')}}'">Back to List</button>
             </div>
+
           </form>
         </div>
       </div>

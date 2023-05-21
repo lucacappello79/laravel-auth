@@ -7,7 +7,7 @@
     <div class="col-6">
       <div class="create-card">
         <div class="card-header">
-          <h5 class="card-title mt-3 mb-4 text-center">Add Project</h5>
+          <h3 class="card-title mt-3 mb-4 text-center">Add Project</h5>
         </div>
         <div class="card-body">
 
@@ -64,9 +64,16 @@
             
             </div>
 
-            <div class="d-grid">
+            {{-- <div class="d-grid">
               <button class="btn btn-primary mt-3" type="submit">Add Project</button>
+              <a href="{{ route('admin.projects.index')}}" class="btn btn-success">Back to List</a>
+            </div> --}}
+
+            <div class="d-flex justify-content-between align-items-center" style="gap: 1rem; max-width: 300px; margin: auto;">
+              <button class="btn btn-primary" type="submit">Add Project</button>
+              <button class="btn btn-success" onclick="location.href='{{ route('admin.projects.index')}}'">Back to List</button>
             </div>
+
           </form>
         </div>
       </div>
